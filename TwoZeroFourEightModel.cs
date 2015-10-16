@@ -11,6 +11,7 @@ namespace twozerofoureight
         protected int boardSize; // default is 4
         protected int[,] board;
         protected Random rand;
+        protected int score = 0;
 
         public TwoZeroFourEightModel() : this(4)
         {
@@ -37,6 +38,11 @@ namespace twozerofoureight
             NotifyAll();
         }
 
+        public int GetScore()
+        {
+            return score;
+        }
+
         private int[,] Random(int[,] input)
         {
             while (true)
@@ -46,6 +52,7 @@ namespace twozerofoureight
                 if (board[x, y] == 0)
                 {
                     board[x, y] = 2;
+                    score += 2;
                     break;
                 }
             }
@@ -74,6 +81,7 @@ namespace twozerofoureight
                     {
                         buffer[pos] = board[j, i];
                         pos++;
+                        
                     }
                 }
                 // check duplicate
@@ -126,6 +134,7 @@ namespace twozerofoureight
                     {
                         buffer[pos] = board[j, i];
                         pos++;
+                        
                     }
                 }
                 // check duplicate
@@ -145,6 +154,7 @@ namespace twozerofoureight
                     {
                         board[pos, i] = buffer[j];
                         pos++;
+                        
                     }
                 }
                 // copy back
@@ -180,6 +190,7 @@ namespace twozerofoureight
                     {
                         buffer[pos] = board[i, j];
                         pos++;
+                        
                     }
                 }
                 // check duplicate
@@ -231,6 +242,7 @@ namespace twozerofoureight
                     {
                         buffer[pos] = board[i, j];
                         pos++;
+                        
                     }
                 }
                 // check duplicate
@@ -250,6 +262,7 @@ namespace twozerofoureight
                     {
                         board[i, pos] = buffer[j];
                         pos++;
+                        
                     }
                 }
                 for (int k = pos; k != boardSize; k++)
