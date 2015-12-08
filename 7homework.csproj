@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{21CD42FE-9E1D-43C0-BCAE-29F68F1589DB}</ProjectGuid>
+    <ProjectGuid>{295E49E3-8618-4AC4-8512-1E56EA88B6B0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
     <AssemblyName>WindowsApplication</AssemblyName>
@@ -31,7 +31,7 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>_2_4_8_0</RootNamespace>
+    <RootNamespace>_7homework</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

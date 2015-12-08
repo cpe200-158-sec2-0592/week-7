@@ -12,6 +12,8 @@ namespace twozerofoureight
         protected int[,] board;
         protected Random rand;
         protected int score = 0;
+        protected bool isEnd = false;
+        //protected bool isFull = false;
 
         public TwoZeroFourEightModel() : this(4)
         {
@@ -23,14 +25,35 @@ namespace twozerofoureight
             return board;
         }
 
+        public int GetScore()
+        {
+            return score;
+        }
+        /*
+        public bool GetisEnd()
+        {
+            return isEnd;
+        }
+        */
+
+        /*
+        public bool GetisFull()
+        {
+            return isFull;
+        }
+        */
+
+
         public TwoZeroFourEightModel(int size)
         {
             boardSize = size;
             board = new int[boardSize, boardSize];
             var range = Enumerable.Range(0, boardSize);
-            foreach(int i in range) {
-                foreach(int j in range) {
-                    board[i,j] = 0;
+            foreach (int i in range)
+            {
+                foreach (int j in range)
+                {
+                    board[i, j] = 0;
                 }
             }
             rand = new Random();
@@ -38,14 +61,9 @@ namespace twozerofoureight
             NotifyAll();
         }
 
-        public int GetScore()
-        {
-            return score;
-        }
-
         private int[,] Random(int[,] input)
         {
-            while (true)
+            for (int i = 0; i < boardSize * boardSize; i++)
             {
                 int x = rand.Next(boardSize);
                 int y = rand.Next(boardSize);
@@ -81,7 +99,6 @@ namespace twozerofoureight
                     {
                         buffer[pos] = board[j, i];
                         pos++;
-                        
                     }
                 }
                 // check duplicate
@@ -134,7 +151,6 @@ namespace twozerofoureight
                     {
                         buffer[pos] = board[j, i];
                         pos++;
-                        
                     }
                 }
                 // check duplicate
@@ -154,7 +170,6 @@ namespace twozerofoureight
                     {
                         board[pos, i] = buffer[j];
                         pos++;
-                        
                     }
                 }
                 // copy back
@@ -190,7 +205,6 @@ namespace twozerofoureight
                     {
                         buffer[pos] = board[i, j];
                         pos++;
-                        
                     }
                 }
                 // check duplicate
@@ -242,7 +256,6 @@ namespace twozerofoureight
                     {
                         buffer[pos] = board[i, j];
                         pos++;
-                        
                     }
                 }
                 // check duplicate
@@ -262,7 +275,6 @@ namespace twozerofoureight
                     {
                         board[i, pos] = buffer[j];
                         pos++;
-                        
                     }
                 }
                 for (int k = pos; k != boardSize; k++)
@@ -272,6 +284,36 @@ namespace twozerofoureight
             }
             board = Random(board);
             NotifyAll();
+        }
+
+        public bool CheckStatus()
+        {
+            isEnd = true;
+            //isFull = true;
+            for (int i = 0; i < boardSize - 1; i++)
+            {
+                for (int j = 0; j < boardSize - 1; j++)
+                {
+                    if (board[i, j] == 0)
+                    {
+                        //isFull = false;
+                        isEnd = false;
+                        break;
+                    }
+                    if (board[i, j] == board[i, j + 1])
+                    {
+                        isEnd = false;
+                        break;
+                    }
+                    if (board[i, j] == board[i + 1, j])
+                    {
+                        isEnd = false;
+                        break;
+                    }
+                }
+                if (!isEnd) { break; }
+            }
+            return isEnd;
         }
     }
 }
